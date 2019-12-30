@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- <style>
-        .test1{
-            margin-right: 100px;
+    <style>
+        input[type=radio]{
+            display: none;
         }
-    </style> -->
+        .radio-label:hover{
+            background:rgba(106,191,255,0.3);
+        }
+
+        input[type=radio]:checked+label{
+        background:rgba(106,191,255,0.6);
+        }
+    </style>
 </head>
 <body>
-    <button class="test1" style="margin-right: 100px;">
-        test
-    </button>
-    <button>
-        test1
-    </button>
+    <input type="radio" name="mark" value="option1" id="invest_target_r1">
+    <label class="radio-label" for="invest_target_r1"> 保守型 </label>
+    <input type="radio" name="mark" value="option2" id="invest_target_r2">
+    <label class="radio-label" for="invest_target_r2"> 平衡型 </label>
 </body>
 </html>

@@ -23,6 +23,27 @@
             height: 34px;
             width: 110px;
         }
+
+        input[type=radio]:checked+label {
+            background: rgba(106, 191, 255, 0.6);
+        }
+
+        .time {
+            float: left;
+            margin-left: 15px;
+        }
+
+        .endTime {
+            float: left;
+            margin-left: 15px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .date {
+            margin-left: 15px;
+            float: left;
+        }
     </style>
 </head>
 
@@ -86,7 +107,6 @@
                                 <li class="active">
                                     <a href="index.html" class="effect-3">Home</a>
                                 </li>
-                                aaaa
                                 <li>
                                     <a href="about.html" class="effect-3">About Us</a>
                                 </li>
@@ -161,22 +181,27 @@
                         <div class="panel-heading" style="float: left;">
                             <h3 class="panel-title">全部结果</h3>
                         </div>
-                        <div class="panel-body" style="float: right; margin-left: 15px;">
+                        <div class="panel-body" id="panel-body-result" style="float: right; margin-left: 15px;">
                             <div class="selected"
-                                style="float: left; margin-left: 15px; margin-right: 15px;height: 100%;font-size: 16px;">
-                                <span class="close">&times;</span>南山图书馆
+                                style="float: left; margin-left: 15px; margin-right: 15px;height: 100%;font-size: 16px;"
+                                id="result1">
+                                <!-- <span class="close">&times;</span>南山图书馆 -->
                             </div>
-                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;">
-                                <span class="close">&times;</span>1楼
+                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;"
+                                id="result2">
+                                <!-- <span class="close">&times;</span>1楼 -->
                             </div>
-                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;">
-                                <span class="close">&times;</span>8:00
+                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;"
+                                id="result3">
+                                <!-- <span class="close">&times;</span>8:00 -->
                             </div>
-                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;">
-                                <span class="close">&times;</span>12:00
+                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;"
+                                id="result4">
+                                <!-- <span class="close">&times;</span>12:00 -->
                             </div>
-                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;">
-                                <span class="close">&times;</span>今天
+                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;"
+                                id="result5">
+                                <!-- <span class="close">&times;</span>今天 -->
                             </div>
                         </div>
                     </div>
@@ -185,39 +210,240 @@
                         <!-- Default panel contents -->
                         <div class="panel-body">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myPlace">
-                                选择地点
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myFloor">
-                                选择楼层
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myStartTime">
-                                选择开始时间
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myEndTime">
-                                选择结束时间
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myDate">
-                                选择日期
-                            </button>
-
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <select class="form-control" id="selectPlace" onchange="getValueOfPlace()">
+                                        <option value="南山图书馆">南山图书馆</option>
+                                        <option value="学府城图书馆">学府城图书馆</option>
+                                        <option value="本部图书馆">本部图书馆</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="form-control select" id="selectFloor" onchange="getValueOfFloor()">
+                                        <option value="1">1楼</option>
+                                        <option value="2">2楼</option>
+                                        <option value="3">3楼</option>
+                                        <option value="4">4楼</option>
+                                        <option value="5">5楼</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#myStartTime">
+                                        选择开始时间
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <!-- 地点选择模态框 -->
-                        <div class="modal fade" id="myPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal fade" id="myStartTime" tabindex="-1" role="dialog"
+                            aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"
                                             aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                        <h4 class="modal-title" id="myModalLabel">请选择时间：</h4>
                                     </div>
                                     <div class="modal-body">
-                                        ...
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">开始时间：</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option1" value="8"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option1">8：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option2" value="9"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option2">9：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option3" value="10"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option3">10：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option4" value="11"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option4">11：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option5" value="12"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option5">12：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option6" value="13"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option6">13：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option7" value="14"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option7">14：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option8" value="15"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option8">15：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option9" value="16"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option9">16：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option10" value="17"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option10">17：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option11" value="18"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option11">18：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option12" value="19"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option12">19：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option13" value="20"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option13">20：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option14" value="21"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option14">21：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option15" value="22"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option15">22：00</label>
+                                                </div>
+                                                <div class="time">
+                                                    <input type="radio" style="display: none;" id="option16" value="23"
+                                                        name="timeSelect1">
+                                                    <label class="label label-success" for="option16">23：00</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">结束时间选择：</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option17" value="8"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option17">8：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option18" value="9"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option18">9：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option19" value="10"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option19">10：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option20" value="11"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option20">11：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option21" value="12"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option21">12：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option22" value="13"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option23">13：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option24" value="14"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option24">14：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option25" value="15"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option25">15：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option26" value="16"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option26">16：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option27" value="17"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option27">17：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option28" value="18"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option28">18：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option29" value="19"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option29">19：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option30" value="20"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option30">20：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option31" value="21"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option31">21：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option32" value="22"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option32">22：00</label>
+                                                </div>
+                                                <div class="endTime">
+                                                    <input type="radio" style="display: none;" id="option33" value="23"
+                                                        name="timeSelect">
+                                                    <label class="label label-success" for="option33">23：00</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">日期选择：</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="date">
+                                                    <input type="radio" style="display: none;" id="date0" value="0"
+                                                        name="dateSelect">
+                                                    <label class="label label-success" for="date0">今天 <span
+                                                            id="today"></span></label>
+                                                </div>
+                                                <div class="date">
+                                                    <input type="radio" style="display: none;" id="date1" value="1"
+                                                        name="dateSelect">
+                                                    <label class="label label-success" for="date1">明天 <span
+                                                            id="tomorrow"></span></label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default"
                                             data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-primary">确认时间</button>
                                     </div>
                                 </div>
                             </div>
@@ -273,7 +499,129 @@
                 "height": "500px"
             });
         }
+        var startTime = 0; //开始事件
+        var endtime = 0; //结束时间
+        var date = 0; //日期
+        var place = "南山图书馆"; //图书馆
+        var floor = "1楼"; //楼层
+        //初始化图书馆和楼层
+        window.onload = function () {
+            document.getElementById("today").innerHTML = GetDateStr(0);
+            document.getElementById("tomorrow").innerHTML = GetDateStr(1);
+            var close = "<span class='close'>&times;</span>";
+            $("#result1").text("");
+            $("#result1").append(close + place);
+            $("#result2").text("");
+            $("#result2").append(close + floor);
+
+        }
+        $(document).ready(function () {
+            var close = "<span class='close'>&times;</span>";
+            $("#result1").text("");
+            $("#result1").append(close + place);
+            $("#result2").text("");
+            $("#result2").append(close + floor);
+        });
+        $(".panel-body .time .label.label-success").click(function () {
+
+            var val = $(this).html();
+            startTime = parseInt(val.split("：")[0]); //获取到开始时间
+            //console.log(startTime);
+            var endTime = $(".endTime");
+            for (var i = 0; i < endTime.length; i++) {
+                var value = endTime[i].innerText;
+                var tmp = parseInt(value.split("：")[0]);
+                if (tmp > startTime) {
+                    endTime[i].style.display = "block";
+                } else {
+                    endTime[i].style.display = "none";
+                }
+            }
+        });
+        $(".panel-body .endTime .label.label-success").click(function () {
+            var val = $(this).html();
+            endtime = parseInt(val.split("：")[0]);
+
+            console.log(startTime);
+        });
+
+        $(document).ready(function () {
+            $(".close").click(function () {
+                $(this).parent().hide();
+            });
+        })
+
+
+
+        $(".modal-footer .btn.btn-primary").click(function () {
+            if (startTime === 0 || endtime === 0) {
+                alert("请选择时间！");
+            } else {
+                var st = startTime + ":00"; //开始时间
+                var et = endtime + ":00"; //结束时间
+                var day;
+                var close = "<span class='close'>&times;</span>";
+                if (date == 0) {
+                    day = GetDateStr(0);
+                } else {
+                    day = GetDateStr(1);
+                }
+                $("#result3").text("");
+                $("#result3").append(close + st);
+                $("#result4").text("");
+                $("#result4").append(close + et);
+                $("#result5").text("");
+                $("#result5").append(close + day);
+
+                // $("#result3")=close+st;
+                // $("#result4").innerHTML=close+et;
+                // $("#result5").innerHTML=close+day;
+                $('#myStartTime').modal('hide');
+            }
+        });
+
+        function GetDateStr(AddDayCount) {
+            var dd = new Date();
+            dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期
+            var y = dd.getFullYear();
+            var m = dd.getMonth() + 1; //获取当前月份的日期
+            var d = dd.getDate();
+            return y + "-" + m + "-" + d;
+        }
+
+
+
+        $(".date .label.label-success").click(function () {
+            var val = $(this).html();
+            if (val[0] == "今") {
+                date = 0;
+            } else {
+                date = 1;
+            }
+            console.log(date);
+        });
+
+        function getValueOfPlace() { //获取图书馆选择
+            var options = $("#selectPlace option:selected"); //获取选中的项
+            place = options.text();
+            var close = "<span class='close'>&times;</span>";
+            $("#result1").text("");
+            $("#result1").append(close + place);
+        }
+
+        function getValueOfFloor() { //获取楼层选择
+            var options = $("#selectFloor option:selected"); //获取选中的项
+            floor = options.text();
+            var close = "<span class='close'>&times;</span>";
+            $("#result2").text("");
+            $("#result2").append(close + floor);
+        }
+        //监听结果栏，当发生变化时，发送AJAX给后端
+        $("#panel-body-result").bind('DOMNodeInserted', function (e) {
+            alert("元素发生了变化");
+        });
     </script>
+
 </body>
 
 
