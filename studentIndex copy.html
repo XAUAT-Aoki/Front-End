@@ -17,93 +17,11 @@
     <!-- <script type="text/javascript" src="../dist/ResizeSensor.js"></script> -->
     <script type="text/javascript" src="js/theia-sticky-sidebar.min.js"></script>
     <style>
-        .fliterResult {
-            height: 50px;
-            width: 100%;
-            line-height: 50px;
-        }
-
-        .selectItem {
-            margin-top: 10px;
-            height: 60px;
-            width: 100%;
-            overflow: hidden;
-            line-height: 60px;
-        }
-
-        .selectItem .menuList {
-            width: 81%;
-            height: 100%;
-            float: left;
-            margin-left: 5px;
-            border: 5px;
-            border-color: black;
-            /* background-color: #eee; */
-            opacity: 0.8;
-        }
-
-        .resultTextTime {
-            border: none;
-            line-height: 120px;
-        }
-
-        .selectItem .menuList label {
-            width: auto;
-            height: auto;
-            margin-left: 15px;
-            border: none;
-            margin-bottom: 15px;
-            font-size: medium;
-            font: black;
-        }
-
-        .selectItem_time {
-            height: 120px;
-        }
-
-        .selectItem .menuList_time {
-            height: 120px;
-
-        }
-
-        .selectResult {
-            margin-top: 15px;
-            width: 100%;
-        }
-
-        .resultText {
-            background-color: #eee;
-            opacity: 0.7;
-            height: 100%;
-            width: 18%;
-            text-align: center;
-            border-radius: 15px;
-            font-size: 20px;
-            float: left;
-        }
-
-        .result {
-            width: 80%;
-            height: 100%;
-            float: right;
-        }
-
-        .result .resultItem {
-            width: auto;
-            padding-right: 10px;
-            margin-left: 5px;
-            float: left;
-            height: 100%;
-            border-radius: 15px;
-        }
-
-        .result .resultItem .close {
-            width: 10px;
-            margin-left: 5px;
-            border-radius: 3px;
-            float: left;
-            font-size: 25px;
-            color: red;
+        .panel .panel-body button {
+            margin-left: 20px;
+            margin-right: 20px;
+            height: 34px;
+            width: 110px;
         }
     </style>
 </head>
@@ -238,123 +156,69 @@
             <div class="container">
                 <div class="col-md-10">
                     <!-- 空闲座位菜单开始 -->
-                    <div class="fliterResult">
-                        <div class="resultText">
-                            <span>全部结果</span>
+                    <div class="panel panel-success" style="margin-bottom: 20px;height: 50px;">
+                        <div class="panel-heading" style="float: left;">
+                            <h3 class="panel-title">全部结果</h3>
                         </div>
-                        <div class="result">
-                            <div class="resultItem bg-primary">
+                        <div class="panel-body" style="float: right; margin-left: 15px;">
+                            <div class="selected"
+                                style="float: left; margin-left: 15px; margin-right: 15px;height: 100%;font-size: 16px;">
                                 <span class="close">&times;</span>南山图书馆
                             </div>
-                            <div class="resultItem bg-primary">
+                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;">
+                                <span class="close">&times;</span>1楼
+                            </div>
+                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;">
+                                <span class="close">&times;</span>8:00
+                            </div>
+                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;">
                                 <span class="close">&times;</span>12:00
                             </div>
-                            <div class="resultItem bg-primary">
-                                <span class="close">&times;</span>13:00
-                            </div>
-                            <div class="resultItem bg-primary">
+                            <div class="selected" style="float: left; margin-left: 15px; margin-right: 15px;">
                                 <span class="close">&times;</span>今天
                             </div>
                         </div>
+                    </div>
 
-                    </div>
-                    <div class="selectItem">
-                        <div class="resultText">
-                            <span>地点</span>
+                    <div class="panel panel-default" style="margin-top: 15px;">
+                        <!-- Default panel contents -->
+                        <div class="panel-body">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myPlace">
+                                选择地点
+                            </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myFloor">
+                                选择楼层
+                            </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myStartTime">
+                                选择开始时间
+                            </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myEndTime">
+                                选择结束时间
+                            </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myDate">
+                                选择日期
+                            </button>
+
                         </div>
-                        <div class="menuList">
-                            <label id="place_1" class="label label-info">南山图书馆</label>
-                            <label id="place_2" class="label label-info">学府城图书馆</label>
-                            <label id="place_3" class="label label-info">本部图书馆</label>
-                        </div>
-                    </div>
-                    <div class="selectItem">
-                        <div class="resultText">
-                            <span>楼层</span>
-                        </div>
-                        <div class="menuList">
-                            <label id="floor_1" class="label label-info">1楼</label>
-                            <label id="floor_2" class="label label-info">2楼</label>
-                            <label id="floor_3" class="label label-info">3楼</label>
-                            <label id="floor_4" class="label label-info">4楼</label>
-                            <label id="floor_5" class="label label-info">5楼</label>
-                        </div>
-                    </div>
-                    <div class="selectItem selectItem_time">
-                        <div class="resultText resultTextTime">
-                            <span>开始时间</span>
-                        </div>
-                        <div class="menuList menuList_time">
-                            <div class="half_time">
-                                <label class="label label-info">8:00</label>
-                                <label class="label label-info">9:00</label>
-                                <label class="label label-info">10:00</label>
-                                <label class="label label-info">11:00</label>
-                                <label class="label label-info">12:00</label>
-                                <label class="label label-info">13:00</label>
-                                <label class="label label-info">14:00</label>
-                                <label class="label label-info">15:00</label>
-                            </div>
-                            <div class="half_time">
-                                <label class="label label-info">16:00</label>
-                                <label class="label label-info">17:00</label>
-                                <label class="label label-info">18:00</label>
-                                <label class="label label-info">19:00</label>
-                                <label class="label label-info">20:00</label>
-                                <label class="label label-info">21:00</label>
-                                <label class="label label-info">22:00</label>
-                                <label class="label label-info">23:00</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="selectItem selectItem_time">
-                        <div class="resultText resultTextTime">
-                            <span>开始时间</span>
-                        </div>
-                        <div class="menuList menuList_time">
-                            <div class="half_time">
-                                <label class="label label-info">8:00</label>
-                                <label class="label label-info">9:00</label>
-                                <label class="label label-info">10:00</label>
-                                <label class="label label-info">11:00</label>
-                                <label class="label label-info">12:00</label>
-                                <label class="label label-info">13:00</label>
-                                <label class="label label-info">14:00</label>
-                                <label class="label label-info">15:00</label>
-                            </div>
-                            <div class="half_time">
-                                <label class="label label-info">16:00</label>
-                                <label class="label label-info">17:00</label>
-                                <label class="label label-info">18:00</label>
-                                <label class="label label-info">19:00</label>
-                                <label class="label label-info">20:00</label>
-                                <label class="label label-info">21:00</label>
-                                <label class="label label-info">22:00</label>
-                                <label class="label label-info">23:00</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="selectItem">
-                        <div class="resultText">
-                            <span>日期</span>
-                        </div>
-                        <div class="menuList">
-                            <label class="label label-info">今天</label>
-                            <label class="label label-info">明天</label>
-                        </div>
-                    </div>
-                    <div id="selectResult" class="selectResult">
-                        <div class="result">
-                            <div class="resultList">
-                                
-                            </div>
-                            <div class="resultList">
-                            </div>
-                            <div class="resultList">
-                            </div>
-                            <div class="resultList">
-                            </div>
-                            <div class="resultList">
+                        <!-- 地点选择模态框 -->
+                        <div class="modal fade" id="myPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
