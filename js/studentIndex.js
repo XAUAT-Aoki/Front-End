@@ -74,11 +74,31 @@ if ($('#selectResult').children().length <= 100) {
         "height": "500px"
     });
 }
-var startTime = 0; //开始事件
+var startTime = 0; //开始时间
 var endtime = 0; //结束时间
 var date = 0; //日期
 var place = "南山图书馆"; //图书馆
 var floor = "1楼"; //楼层
+function getIdOfButton(id) {
+    //获取点击按钮的id
+    //alert(id);
+    //获取筛选结果
+    if (startTime == 0 || endtime == 0) {
+        alert("请选择时间后预定！");
+    } else {
+        //调用函数，将开始时间，结束时间，日期，图书馆，楼层发送给后端
+    }
+}
+
+//发送函数
+function sendData(startTime,endTime,date,place,floor){
+
+}
+
+//将获取到的数据设置为HTML
+function generateHTML(re){
+
+}
 //初始化图书馆和楼层
 window.onload = function () {
     document.getElementById("today").innerHTML = GetDateStr(0);
@@ -191,9 +211,9 @@ function getValueOfFloor() { //获取楼层选择
     $("#result2").text("");
     $("#result2").append(close + floor);
 }
-//监听结果栏，当发生变化时，发送AJAX给后端
+//监听结果栏，当发生变化时，发送数据给后端
 $("#panel-body-result").bind('DOMNodeInserted', function (e) {
-    // alert("元素发生了变化");
+    //开始时间，结束时间，地点，楼层，以及日期
 });
 
 

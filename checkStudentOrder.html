@@ -17,93 +17,20 @@
     <!-- <script type="text/javascript" src="../dist/ResizeSensor.js"></script> -->
     <script type="text/javascript" src="js/theia-sticky-sidebar.min.js"></script>
     <style>
-        .fliterResult {
-            height: 50px;
-            width: 100%;
-            line-height: 50px;
-        }
-
-        .selectItem {
-            margin-top: 10px;
-            height: 60px;
-            width: 100%;
-            overflow: hidden;
-            line-height: 60px;
-        }
-
-        .selectItem .menuList {
-            width: 81%;
-            height: 100%;
-            float: left;
-            margin-left: 5px;
-            border: 5px;
-            border-color: black;
-            /* background-color: #eee; */
-            opacity: 0.8;
-        }
-
-        .resultTextTime {
-            border: none;
-            line-height: 120px;
-        }
-
-        .selectItem .menuList label {
-            width: auto;
-            height: auto;
-            margin-left: 15px;
-            border: none;
-            margin-bottom: 15px;
-            font-size: medium;
-            font: black;
-        }
-
-        .selectItem_time {
-            height: 120px;
-        }
-
-        .selectItem .menuList_time {
-            height: 120px;
-
-        }
-
-        .selectResult {
-            margin-top: 15px;
-            width: 100%;
-        }
-
-        .resultText {
-            background-color: #eee;
-            opacity: 0.7;
-            height: 100%;
-            width: 18%;
+        .row .panel-body .panel-body li {
+            margin-bottom: 5px;
             text-align: center;
-            border-radius: 15px;
-            font-size: 20px;
-            float: left;
         }
 
-        .result {
-            width: 80%;
-            height: 100%;
-            float: right;
+        .row .panel-body ul button {
+            margin-top: 10px;
+            text-align: center;
+            display: block;
+            margin: 0 auto
         }
 
-        .result .resultItem {
-            width: auto;
-            padding-right: 10px;
-            margin-left: 5px;
-            float: left;
-            height: 100%;
-            border-radius: 15px;
-        }
-
-        .result .resultItem .close {
-            width: 10px;
-            margin-left: 5px;
-            border-radius: 3px;
-            float: left;
-            font-size: 25px;
-            color: red;
+        .row .panel-body .list-group {
+            margin: 0 0 0 0;
         }
     </style>
 </head>
@@ -238,12 +165,163 @@
             <div class="container">
                 <div class="col-sm-10">
                     <div class="panel panel-success">
-                        <div class="panel-body">
-                           Basic panel example
+                        <div class="panel-heading">
+                            <h3 class="panel-title">预约单记录</h3>
                         </div>
+                        <div class="row newestOrder">
+                            <div class="col-sm-12">
+                                <div class="panel-body">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">2019-12-31</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item list-group-item-default">订单号:<span
+                                                        class="OrderID">123454353535353</span></li>
+                                                <li class="list-group-item list-group-item-info">图书馆：<span
+                                                        class="OrderPlace">南山图书馆</span></li>
+                                                <li class="list-group-item list-group-item-default">楼层:<span
+                                                        class="OrderFloor">1楼</span></li>
+                                                <li class="list-group-item list-group-item-default">座位号:<span
+                                                        class="OrderSeatNum">21-3</span></li>
+                                                <li class="list-group-item list-group-item-default">开始时间:<span
+                                                        class="OrderStartTime">2019-12-31 12：00</span></li>
+                                                <li class="list-group-item list-group-item-default">结束时间:<span
+                                                        class="OrderEndTime">2019-12-31 13:00</span></li>
+                                                <button class="btn btn-primary btn-sm" id="123454353535353"
+                                                    onclick="cancelOrder(id)">取消预定</button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row oldOrder">
+                            <div class="col-sm-4">
+                                <div class="panel-body">
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">2019-10-21</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item list-group-item-default">订单号:<span
+                                                        class="OrderID">123454353535353</span></li>
+                                                <li class="list-group-item list-group-item-info">图书馆：<span
+                                                        class="OrderPlace">南山图书馆</span></li>
+                                                <li class="list-group-item list-group-item-default">楼层:<span
+                                                        class="OrderFloor">1楼</span></li>
+                                                <li class="list-group-item list-group-item-default">座位号:<span
+                                                        class="OrderSeatNum">21-3</span></li>
+                                                <li class="list-group-item list-group-item-default">开始时间:<span
+                                                        class="OrderStartTime">2019-12-31 12：00</span></li>
+                                                <li class="list-group-item list-group-item-default">结束时间:<span
+                                                        class="OrderEndTime">2019-12-31 13:00</span></li>
+                                                <li class="list-group-item list-group-item-default">订单状态:<label
+                                                        class="OrderStatus label label-success">正常完成</label></li>
+                                                <button class="btn btn-primary btn-sm" id="123454353535353"
+                                                    onclick="complain(id)">申诉</button>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="panel-body">
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">2019-10-21</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item list-group-item-default">订单号:<span
+                                                        class="OrderID">123454353535353</span></li>
+                                                <li class="list-group-item list-group-item-info">图书馆：<span
+                                                        class="OrderPlace">南山图书馆</span></li>
+                                                <li class="list-group-item list-group-item-default">楼层:<span
+                                                        class="OrderFloor">1楼</span></li>
+                                                <li class="list-group-item list-group-item-default">座位号:<span
+                                                        class="OrderSeatNum">21-3</span></li>
+                                                <li class="list-group-item list-group-item-default">开始时间:<span
+                                                        class="OrderStartTime">2019-12-31 12：00</span></li>
+                                                <li class="list-group-item list-group-item-default">结束时间:<span
+                                                        class="OrderEndTime">2019-12-31 13:00</span></li>
+                                                <li class="list-group-item list-group-item-default">订单状态:<label
+                                                        class="OrderStatus label label-danger">违约完成</label></li>
+                                                <button class="btn btn-primary btn-sm" id="123454353535353"
+                                                    onclick="complain(id)">申诉</button>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="panel-body">
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">2019-10-21</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item list-group-item-default">订单号:<span
+                                                        class="OrderID">123454353535353</span></li>
+                                                <li class="list-group-item list-group-item-info">图书馆：<span
+                                                        class="OrderPlace">南山图书馆</span></li>
+                                                <li class="list-group-item list-group-item-default">楼层:<span
+                                                        class="OrderFloor">1楼</span></li>
+                                                <li class="list-group-item list-group-item-default">座位号:<span
+                                                        class="OrderSeatNum">21-3</span></li>
+                                                <li class="list-group-item list-group-item-default">开始时间:<span
+                                                        class="OrderStartTime">2019-12-31 12：00</span></li>
+                                                <li class="list-group-item list-group-item-default">结束时间:<span
+                                                        class="OrderEndTime">2019-12-31 13:00</span></li>
+                                                <li class="list-group-item list-group-item-default">订单状态:<label
+                                                        class="OrderStatus label label-warning">提前结束</label></li>
+                                                <button class="btn btn-primary btn-sm" id="123454353535353"
+                                                    onclick="complain(id)">申诉</button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="complainModal" tabindex="-1" role="dialog"
+                            aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">确认申诉？</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul class="list-group">
+                                            <div class="panel panel-info">
+                                                <div class="panel-heading">
+                                                    </h23><h3 class="panel-title" id="complainModalTitleID"></h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p><label class="label label-success" id="complainModalID"></label></p>
+                                                    <p>请前往图书馆管理员处申诉，或点击下方按钮发送申诉邮件！</p>
+                                                </div>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">关闭</button>
+                                        <button type="button" id="complainSaveBtn" onclick="" class="btn btn-primary">发送邮件</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    
-                </div>                
+
+                </div>
             </div>
         </div>
     </div>>
@@ -286,13 +364,35 @@
     <script src="js/SmoothScroll.min.js"></script>
     <script src="js/move-top.js"></script>
     <script src="js/easing.js"></script>
-    <script src="js/studentIndex.js"></script>
+    <script src="js/checkStudentOrder.js"></script>
     <script>
         if ($('#selectResult').children().length <= 100) {
             $("#selectResult").css({
                 "height": "500px"
             });
         }
+
+        function cancelOrder(id) {
+            //取消订单
+            //发送id给后端
+
+        }
+        var OrderID;
+
+        function complain(id) {
+            //申诉按钮
+            OrderID=id;
+            var mesg="当前申诉订单号为："+id;
+            $("#complainModalID").text(mesg);
+            $("#complainModalTitleID").text(mesg);
+            $('#complainModal').modal('show');
+        }
+
+        $("#complainSaveBtn").click(function(){
+            var str="订单："+OrderID+"出现问题，需要申诉！";
+            location="mailto:aoki3352@163.com?subject=test&cc=sample@hotmail.com&subject"+str;
+        });
+
     </script>
 </body>
 

@@ -17,7 +17,23 @@
     <!-- <script type="text/javascript" src="../dist/ResizeSensor.js"></script> -->
     <script type="text/javascript" src="js/theia-sticky-sidebar.min.js"></script>
     <style>
-        
+        .panel-body .panel.panel-info .list-group li {
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .panel-body .panel.panel-info .list-group li span {
+            float: right;
+        }
+
+        .panel-body .panel.panel-info .list-group button {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .panel-body .panel.panel-info .list-group {
+            margin: 0 0 0 0;
+        }
     </style>
 </head>
 
@@ -423,6 +439,77 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">查询结果</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="panel panel-info">
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item list-group-item-default">南山图书馆<span
+                                                        class="label label-danger">New</span></li>
+                                                <li class="list-group-item list-group-item-info">1楼</li>
+                                                <li class="list-group-item list-group-item-success">座位号：<span
+                                                        id="seatNum">21-1</span></li>
+                                                <button class="btn btn-primary btn-sm" id="21-1"
+                                                    onclick="getIdOfButton(id)">预定</button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="panel panel-info">
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item list-group-item-default">南山图书馆<span
+                                                        class="label label-danger">New</span></li>
+                                                <li class="list-group-item list-group-item-info">1楼</li>
+                                                <li class="list-group-item list-group-item-success">座位号：<span
+                                                        id="seatNum">21-2</span></li>
+                                                <button class="btn btn-primary btn-sm" id="21-2"
+                                                    onclick="getIdOfButton(id)">预定</button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="panel panel-info">
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item list-group-item-default">南山图书馆<span
+                                                        class="label label-danger">New</span></li>
+                                                <li class="list-group-item list-group-item-info">1楼</li>
+                                                <li class="list-group-item list-group-item-success">座位号：<span
+                                                        id="seatNum">21-3</span></li>
+                                                <button class="btn btn-primary btn-sm" id="21-3"
+                                                    onclick="getIdOfButton(id)">预定</button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="panel panel-info">
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item list-group-item-default">南山图书馆<span
+                                                        class="label label-danger">New</span></li>
+                                                <li class="list-group-item list-group-item-info">1楼</li>
+                                                <li class="list-group-item list-group-item-success">座位号：<span
+                                                        id="seatNum">21-4</span></li>
+                                                <button class="btn btn-primary btn-sm" id="21-4"
+                                                    onclick="getIdOfButton(id)">预定</button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -467,5 +554,11 @@
     <script src="js/move-top.js"></script>
     <script src="js/easing.js"></script>
     <script src="js/studentIndex.js"></script>
+    <script>
+        
+
+        
+    </script>
 </body>
+
 </html>
