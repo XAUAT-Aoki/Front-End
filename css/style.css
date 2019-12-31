@@ -47,6 +47,34 @@ input[type="submit"] {
     display: none;
 }
 
+.panel .panel-body button {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 34px;
+    width: 110px;
+}
+
+input[type=radio]:checked+label {
+    background: rgba(106, 191, 255, 0.6);
+}
+
+.time {
+    float: left;
+    margin-left: 15px;
+}
+
+.endTime {
+    float: left;
+    margin-left: 15px;
+    margin-top: 10px;
+    display: none;
+}
+
+.date {
+    margin-left: 15px;
+    float: left;
+}
+
 
 /* 自定义部分结束 */
 
