@@ -15,6 +15,19 @@
     <!-- font-awesome -->
     <link href="css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <style>
+        #nameError {
+            color: red;
+            text-align: center;
+            display: none;
+        }
+
+        #floorError {
+            color: red;
+            text-align: center;
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -107,39 +120,57 @@
             <div class="col-md-10">
                 <div class="container" id="studentInformation">
                     <div class="page-header" style="margin-top: 15px;">
-                        <h1><small>个人信息</small></h1>
+                        <h1><small>添加图书馆</small></h1>
                     </div>
-                    <div class="informationDetail">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">旧密码</label>
-                                <div class="col-sm-8">
-                                    <input type="password" class="form-control" maxlength="" minlength="" id="password">
-                                </div>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="libraryName" class="col-sm-2 control-label">图书馆名</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control auth" id="libraryName" placeholder="请输入图书馆名">
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">新密码</label>
-                                <div class="col-sm-8">
-                                    <input type="password" class="form-control" maxlength="" minlength="" id="password">
-                                </div>
+                            <span class="col-sm-2" id="nameError">图书馆名重复!</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="libraryLongitude" class="col-sm-2 control-label">经度</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="libraryLongitude" placeholder="请输入图书馆经度">
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">确认密码</label>
-                                <div class="col-sm-8">
-                                    <input type="password" class="form-control auth" maxlength="" minlength=""
-                                        id="repassword">
-                                </div>
-                                <span class="col-sm-2" id="pwdError">两次密码不一致!</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="libraryLatitude" class="col-sm-2 control-label">纬度</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="libraryLatitude" placeholder="请输入图书馆纬度">
                             </div>
-                            <div class="submitInformation" style="margin-top: 50px;">
-                                <div class="col-sm-4"></div>
-                                <button type="submit" id="submitBtn" class="btn btn-success col-sm-4">
-                                    确认修改
-                                </button>
-                                <div class="col-sm-4"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="libraryError" class="col-sm-2 control-label">经纬度误差</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="libraryError" placeholder="请输入经纬度误差">
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="libraryStartFloor" class="col-sm-2 control-label">起始楼层</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="libraryStartFloor" placeholder="请输入图书馆起始楼层">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="libraryEndFloor" class="col-sm-2 control-label">终止楼层</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control auth" id="libraryEndFloor"
+                                    placeholder="请输入图书馆终止楼层">
+                            </div>
+                            <span class="col-sm-2" id="floorError">终止楼层需大于起始楼层!</span>
+                        </div>
+
+                        <div class="submitInformation" style="margin-top: 50px;">
+                            <div class="col-sm-4"></div>
+                            <button type="submit" id="addLibraryBtn" class="btn btn-success col-sm-4">
+                                确认添加
+                            </button>
+                            <div class="col-sm-4"></div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -182,5 +213,68 @@
     <script src="js/move-top.js"></script>
     <script src="js/easing.js"></script>
     <script src="js/studentIndex.js"></script>
+    <script>
+        var startfloor = 1;
+        var endfloor;
+        $("#libraryName").blur(function () {
+            $(this).data({
+                "s": 0
+            }); //设置初始值，当后端未返回时，前端无法进行修改
+            var name = $("#libraryName").val();
+            //发送图书馆名到后端
+
+            //返回值re为false时，auth为0，显示图书馆名重名
+            if (re == false) {
+                $(this).data({
+                    "s": 0
+                });
+                $("#nameError").show();
+            } else {
+                $(this).data({
+                    "s": 0
+                });
+                $("#nameError").hide();
+            }
+        });
+        $("#libraryStartFloor").blur(function () {
+            startfloor = parseInt($("#libraryStartFloor").val());
+            if (startfloor <= 0) {
+                startfloor = 1;
+            } else if ($("#libraryStartFloor").val() == "") {
+                startfloor = 1;
+            }
+            $("#libraryStartFloor").val(startfloor);
+        });
+        $("#libraryEndFloor").blur(function () {
+            endfloor = parseInt($("#libraryEndFloor").val());
+            if ($("#libraryEndFloor").val() == "") {
+                endfloor = 1;
+            } else if (endfloor < startfloor) {
+                $(this).data({
+                    "s": 0
+                });
+                $("#floorError").show();
+            } else {
+                $(this).data({
+                    "s": 1
+                });
+                $("#floorError").hide();
+            }
+            $("#libraryEndFloor").val(endfloor);
+
+        });
+        $("form").submit(function () {
+            // $(".auth").blur();
+            tot = 0;
+            $(".auth").each(function () {
+                tot += $(this).data("s");
+            });
+            if (tot != 1) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+    </script>
 
 </html>
