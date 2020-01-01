@@ -1,0 +1,314 @@
+<!-- 学生个人信息页面 -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>Home</title>
+    <!-- meta-tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <!-- //meta-tags -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- font-awesome -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <style>
+        .panel.panel-info .panel-heading {
+            float: left;
+        }
+        .panel.panel-success .row .panel{
+            height: 150px;
+            width: 150px;
+            margin-left: 50px;
+            text-align: center;
+        }
+        .panel.panel-success .row .panel.panel-info{
+            font-size: 100px;            
+        }
+        .panel.panel-success .row .panel.panel-info .glyphicon.glyphicon-plus:hover{
+            color: #bce8f1;
+        }
+        #plusSeat{
+            cursor: pointer;
+        }
+        #plusSeat:hover{
+            color: red;
+        }
+        #MinusSeat{
+            cursor: pointer;
+        }
+        #MinusSeat:hover{
+            color: red;
+        }
+        #setnumErrorPlus{
+            color: red;
+            display: none;
+        }
+        #setnumErrorMinus{
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header-top">
+        <div class="container">
+            <div class="bottom_header_left">
+                <p>
+                    <span class="fa fa-map-marker" aria-hidden="true"></span>西安建筑科技大学
+                </p>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="content white">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">
+                            <h1>
+                                <span class="fa fa-leanpub" aria-hidden="true"></span>我的图书馆
+                                <label>Education &Study </label>
+                            </h1>
+                        </a>
+                    </div>
+                    <!--/.navbar-header-->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <nav class="link-effect-2" id="link-effect-2">
+                            <ul class="nav navbar-nav">
+                                <li class="active">
+                                    <a href="index.html" class="effect-3">订单查询</a>
+                                </li>
+                                <li>
+                                    <a href="about.html" class="effect-3">查看个人信息</a>
+                                </li>
+                                <li>
+                                    <a href="courses.html" class="effect-3">密码修改</a>
+                                </li>
+                                <li>
+                                    <a href="join.html" class="effect-3">申诉</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!--/.navbar-collapse-->
+                    <!--/.navbar-->
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container" style="opacity: 0.6;">
+        <div class="services-breadcrumb">
+            <div class="inner_breadcrumb">
+                <ul class="short_ls">
+                    <li>
+                        <a href="index.html">首页</a>
+                        <span>| |</span>
+                    </li>
+                    <li>Gallery</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 15px;">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="panel panel-success leftSidebar" id="leftSidebar">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">快捷菜单</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a id="" href="" class="list-group-item">订单查询</a>
+                        <a id="" href="" class="list-group-item">查看个人信息</a>
+                        <a id="" href="" class="list-group-item">密码修改</a>
+                        <a id="" href="" class="list-group-item">申诉</a>
+                        <a id="top" href="" class="list-group-item">回到顶部</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">地点</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-sm-4">
+                            <select class="form-control" id="selectPlace" onchange="getValueOfPlace()">
+                                <option value="南山图书馆">南山图书馆</option>
+                                <option value="学府城图书馆">学府城图书馆</option>
+                                <option value="本部图书馆">本部图书馆</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control select" id="selectFloor" onchange="getValueOfFloor()">
+                                <option value="1">1楼</option>
+                                <option value="2">2楼</option>
+                                <option value="3">3楼</option>
+                                <option value="4">4楼</option>
+                                <option value="5">5楼</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="panel panel-info" >
+                                    <div class="panel-body">
+                                       <div class="glyphicon glyphicon-plus" ></div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-sm-4">
+                                <div class="panel panel-danger">
+                                    <div class="panel-body">
+                                        <div class="AllSeatNum">
+                                            <p>座位总数</p>
+                                            <p id="AllSeatNum">12</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-sm-4">
+                                <div class="panel panel-danger">
+                                    <div class="panel-body">
+                                        <div class="AllCanUseNum">
+                                            <p>可使用座位数</p>
+                                            <p id="AllCanUseNum">12</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="setSeatNum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">请输入需添加座位数</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline">
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                      <div class="input-group">
+                        <div class="input-group-addon" id="MinusSeat"><span class="glyphicon glyphicon-minus"></span></div>
+                        <input type="text" class="form-control" id="InputSeatAmount"value="1">
+                        <div class="input-group-addon" id="plusSeat"><span class="glyphicon glyphicon-plus"></span></div>
+                        <span id="setnumErrorPlus">一次最多添加100个座位！</span>
+                        <span id="setnumErrorMinus">可添加座位最小为1！</span>
+                      </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary" id="toSetSeatNum">确认</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="mkl_footer">
+        <div class="sub-footer">
+            <div class="container">
+                <div class="mkls_footer_grid">
+                    <div class="col-xs-4 mkls_footer_grid_left">
+                        <h4>地点:</h4>
+                        <p>西安建筑科技大学,
+                            <br> 草堂校区</p>
+                    </div>
+                    <div class="col-xs-4 mkls_footer_grid_left">
+                        <h4>联系方式:</h4>
+                        <p>
+                            <span>电话 : </span>001 234 5678</p>
+                        <p>
+                            <span>邮箱 : </span>
+                            <a href="mailto:info@example.com">mail@example.com</a>
+                        </p>
+                    </div>
+                    <div class="col-xs-4 mkls_footer_grid_left">
+                        <h4>开放时间 :</h4>
+                        <p>每日：8：00—23：00</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div> <!-- footer-->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/numscroller-1.0.js"></script>
+    <script src="js/jquery.flexisel.js"></script>
+    <script src="js/SmoothScroll.min.js"></script>
+    <script src="js/move-top.js"></script>
+    <script src="js/easing.js"></script>
+    <script>
+        var seatNum=parseInt($("#InputSeatAmount").val());
+        $(".glyphicon").click(function(){
+            $("#setSeatNum").modal("show");
+
+        });
+        $("#plusSeat").click(function(){
+            //var seatNum=parseInt($("#InputSeatAmount").val());
+            if(seatNum<100){
+                seatNum++;
+                $("#InputSeatAmount").val(seatNum);
+            }else{
+                $("#setnumErrorPlus").show();
+            }
+        });
+        $("#MinusSeat").click(function(){
+            if(seatNum>0){
+                seatNum--;
+                $("#InputSeatAmount").val(seatNum);
+            }else{
+                
+                $("setnumErrorMinus").show();
+            }
+        });
+        $("#InputSeatAmount").blur(function(){
+            seatNum=parseInt($("#InputSeatAmount").val());
+            $("#InputSeatAmount").val(seatNum);
+            if(seatNum<100 && seatNum>=0){
+                $("#setnumErrorPlus").hide();
+            }else if(seatNum>=0){
+                $("setnumErrorMinus").hide();
+            }else if(seatNum<0){
+                seatNum=0;
+                $("#InputSeatAmount").val(seatNum);
+            }
+        });
+        $("#toSetSeatNum").click(function(){
+            //获取select下拉框的值
+            //发送三条数据  图书馆地点 图书馆楼层 添加座位数到后端
+
+            //关闭模态框
+            $("#setSeatNum").modal("hide");
+        });
+    </script>
+</body>
+
+</html>
