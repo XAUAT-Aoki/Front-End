@@ -209,9 +209,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><input type="checkbox" name="singleStatus"></th>
+                                <th><input type="checkbox" name="singleStatus" value="2-31"></th>
+                                <td>2-31</td>
                                 <td>南山图书馆</td>
-                                <td>1楼</td>
                                 <td>5楼</td>
                                 <td><label class="label label-danger">正在使用</label></td>
                                 <td>
@@ -221,10 +221,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><input type="checkbox" name="singleStatus"></<input>
+                                <th><input type="checkbox" name="singleStatus" value="2-33"></<input>
                                 </th>
+                                <td>2-33</td>
                                 <td>南山图书馆</td>
-                                <td>1楼</td>
                                 <td>5楼</td>
                                 <td><label class="label label-danger">正在使用</label></td>
                                 <td>
@@ -234,10 +234,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><input type="checkbox" name="singleStatus"></<input>
+                                <th><input type="checkbox" name="singleStatus" value="3-34"></<input>
                                 </th>
+                                <td>3-34</td>
                                 <td>南山图书馆</td>
-                                <td>1楼</td>
                                 <td>5楼</td>
                                 <td><label class="label label-danger">正在使用</label></td>
                                 <td>
@@ -247,10 +247,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><input type="checkbox" name="singleStatus"></<input>
+                                <th><input type="checkbox" name="singleStatus" value="2-35"></<input>
                                 </th>
+                                <td>2-35</td>
                                 <td>南山图书馆</td>
-                                <td>1楼</td>
                                 <td>5楼</td>
                                 <td><label class="label label-danger">正在使用</label></td>
                                 <td>
@@ -260,10 +260,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><input type="checkbox" name="singleStatus"></<input>
+                                <th><input type="checkbox" name="singleStatus" value="2-36"></<input>
                                 </th>
+                                <td>2-36</td>
                                 <td>南山图书馆</td>
-                                <td>1楼</td>
                                 <td>5楼</td>
                                 <td><label class="label label-danger">正在使用</label></td>
                                 <td>
@@ -332,6 +332,27 @@
                 $(":checkbox[name='singleStatus']").prop("checked", false);
             }
         });
+
+
+        function getAllChecked() {
+            var checkID = []; //定义一个空数组 
+            $("input[name='singleStatus']:checked").each(function (i) { //把所有被选中的复选框的值存入数组
+                checkID[i] = $(this).val();
+            });
+            return checkID;
+            console.log(checkID);
+        }
+        $("#closeSeat").click(function(){
+            var checkID=getAllChecked();
+            console.log(checkID);
+            //获取到数据，将数据抛到后端
+        });
+        $("#openSeat").click(function(){
+            var checkID=getAllChecked();
+            console.log(checkID);
+            //获取到数据，将数据抛到后端
+        });
+
     </script>
 </body>
 
