@@ -69,8 +69,3 @@ function hideURLbar() {
     window.scrollTo(0, 1);
 }
 
-if ($('#selectResult').children().length <= 100) {
-    $("#selectResult").css({
-        "height": "500px"
-    });
-}
