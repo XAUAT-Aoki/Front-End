@@ -304,12 +304,12 @@ label {
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus {
-    color: #EF5861;
+    color: #000000;
     background: none;
 }
 
 .navbar-nav>li {
-    float: left;
+    float: right;
     margin: 0;
     width: 14.2%;
     text-align: center;
@@ -2803,7 +2803,7 @@ h3.title-w3l.w3l-2:before {
         width: 77%;
     }
     .navbar-default .navbar-nav>li>a {
-        font-size: 13px;
+        font-size: 15px;
     }
     div#bs-example-navbar-collapse-1 {
         padding: 0;
